@@ -1,0 +1,48 @@
+---
+title: "Codebook"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+"A code book that describes the variables, the data, and any transformations or work that you performed to clean up the data called CodeBook.md"
+
+1. Dataset download
+The dataset was downloaded and unzipped (UCI HAR Dataset)
+
+2. Each data from step 1 was assigned to a variable
+features       <-         "UCI HAR Dataset/features.txt"
+activities     <-         "UCI HAR Dataset/activity_labels.txt"
+subject_test   <-         "UCI HAR Dataset/test/subject_test.txt"
+x_test         <-         "UCI HAR Dataset/test/X_test.txt"
+y_test         <-         "UCI HAR Dataset/test/y_test.txt"
+subject_train  <-         "UCI HAR Dataset/train/subject_train.txt"
+x_train        <-         "UCI HAR Dataset/train/X_train.txt"
+y_train        <-         "UCI HAR Dataset/train/y_train.txt"
+
+3. Merge of the different training and test sets
+x_train and x_test were merged (with rbind()) and called x
+y_train and y_test were merged (with rbind()) and called y
+subject_train and subject_test were merged (with rbind()) and called subejcts
+These 3 new variables were merged (with cbind()) and created the new dataset: merged_dataset
+
+4. Mean and std. dataset
+By subsetting the new dataset (merged_dataset), only including: subject, code and mean and std for each measurement the new dataset was created: tidydata
+
+5. Descriptive activity names in the dataset
+The code column in tidydata were replaced with the second column from the activites variable (which includes information on the descriptive activity names)
+
+6. Approporiately lavels for the dataset
+code=activities
+Acc=acceleromter
+Gryo=Gyroscope
+Bodybody=Body
+Mag=magnitude
+f=frequency
+t=time
+
+7. New final dataset
+The final dataset (tidydata_independent) is created by taking means of each variable from the tidydata
